@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { signIn } from "@/lib/auth-client";
+import Link from "next/link";
 
 const SignInPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -121,6 +122,9 @@ const SignInPage = () => {
             Reset
           </Button>
         </div>
+
+        <p><small>Forgot password? <Link href="forgot-password" className="text-blue-500">Click here</Link></small></p>
+
         <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
         <Button onClick={handleGitHubSignIn}>Sign In with Github</Button>
       </Form>

@@ -11,7 +11,18 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export const auth = betterAuth({
   emailAndPassword: { 
     enabled: true, 
-        requireEmailVerification: true,
+    requireEmailVerification: true,
+    sendResetPassword: async ({ user, url, token }, request) => {
+      void resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: user.email,
+        subject: "Reset your password",
+        text: `
+        <h1>Reset Your Password</h1>
+        Click the link to reset your password: ${url}
+        <p>Ignore if you didn't requested password reset.</p>`,
+      })
+    }
   },
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
