@@ -25,8 +25,13 @@ const SignUpPage = () => {
           email: data.email,
           password: data.password
       });
-      console.log(resData, error);
-      
+      console.log("after sign up", resData, error);  
+  };
+  const handleGoogleSignIn = async () => {
+    const { resData } = await signIn.social({
+      provider: "google",
+    });
+    console.log('after sign in', resData);
   };
 
 
@@ -102,6 +107,7 @@ const SignUpPage = () => {
             Reset
           </Button>
         </div>
+          <Button onClick={handleGoogleSignIn}>Sign In with Google</Button>
       </Form>
     </div>
   );
